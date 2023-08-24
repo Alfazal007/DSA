@@ -10,7 +10,7 @@ public class insertionSort {
         for (int i = 1; i < arr.length; i++) {
             int cur = arr[i];
             int prev = i - 1;
-            while (prev >= 0 && cur < arr[prev]) {
+            while (prev >= 0 && cur > arr[prev]) {
                 arr[prev + 1] = arr[prev];
                 prev--;
             }
