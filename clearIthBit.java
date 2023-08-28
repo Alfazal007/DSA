@@ -1,9 +1,8 @@
 import java.util.Scanner;
 
-public class setIthBit {
-    public static int setter(int n, int i) {
-        int k = 1 << i;
-        return n | k;
+public class clearIthBit {
+    public static int clearIthBit(int n, int i) {
+        return (~(1 << i) & n);
     }
 
     public static void main(String[] args) {
@@ -12,7 +11,6 @@ public class setIthBit {
         int n = sc.nextInt();
         System.out.println("Enter the value of i: ");
         int i = sc.nextInt();
-        int res = setter(n, i);
-        System.out.println(res);
+        System.out.println(clearIthBit(n, i));
     }
 }
