@@ -4,7 +4,7 @@ public class clearRangeOfBits {
     public static int clearRangeBits(int n, int i, int j) {
         // to create bit mask
         int b1 = (-1) << i + 1;
-        int b2 = 1 << j - 1;
+        int b2 = (int) Math.pow(2, j) - 1;
         int bitmask = b1 | b2;
         return bitmask & n;
     }
