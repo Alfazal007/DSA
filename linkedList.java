@@ -38,11 +38,16 @@ public class linkedList {
             next = next.next;
         }
         cur.next = temp;
+        tail = temp;
     }
 
     public static void addMiddle(int index, int data) {
         if (index == 0) {
             addFirst(data);
+            return;
+        }
+        if (index >= size - 1) {
+            addLast(data);
             return;
         }
         Node temp = new Node(data);
@@ -57,12 +62,115 @@ public class linkedList {
         size++;
     }
 
+    public static int removeFirst() {
+        if (size == 0) {
+            return Integer.MIN_VALUE;
+        }
+        if (size == 1) {
+            int data = head.data;
+            head = null;
+            tail = null;
+            size--;
+            return data;
+        } else {
+            int data = head.data;
+            head = head.next;
+            size--;
+            return data;
+        }
+    }
+
+    public static int removeLast() {
+        if (size == 0) {
+            return Integer.MIN_VALUE;
+        }
+        if (size == 1) {
+            int data = head.data;
+            head = null;
+            tail = null;
+            size--;
+            return data;
+        } else {
+            Node temp = head;
+            Node prev = null;
+            while (temp.next != null) {
+                prev = temp;
+                temp = temp.next;
+            }
+            prev.next = null;
+            tail = prev;
+            size--;
+            return temp.data;
+        }
+    }
+
     public static void printLL() {
+        if (size == 0) {
+            System.out.println("Empty linked list");
+            return;
+        }
         Node temp = head;
         while (temp != null) {
             System.out.print(temp.data + " ");
             temp = temp.next;
         }
+        System.out.println();
+    }
+
+    public static int searchIterative(int key) {
+        if (size == 0) {
+            return -1;
+        }
+        Node temp = head;
+        System.out.println(temp.data);
+        int cur = 0;
+        while (temp != null && temp.data != key) {
+            temp = temp.next;
+            cur++;
+        }
+        if (temp == null) {
+            return -1;
+        } else {
+            return cur;
+        }
+    }
+
+    public static int searchRecursive(Node temp, int key, int cur) {
+        if (temp == null) {
+            return -1;
+        }
+        if (temp.data == key) {
+            return cur;
+        } else {
+            return searchRecursive(temp.next, key, cur + 1);
+        }
+    }
+
+    public static void reverse() {
+        if (size <= 1) {
+            return;
+        }
+        if (size == 2) {
+            tail.next = head;
+            head.next = null;
+            Node temp = head;
+            head = tail;
+            tail = temp;
+            return;
+        }
+        Node prev = null;
+        Node temp = head;
+        Node cur = head.next;
+        while (cur != null) {
+            temp.next = prev;
+            prev = temp;
+            temp = cur;
+            cur = cur.next;
+        }
+        temp.next = prev;
+        temp = head;
+        head = tail;
+        tail = temp;
     }
 
     static Node head = null;
@@ -79,6 +187,8 @@ public class linkedList {
         addLast(6);
         addLast(7);
         addMiddle(0, 8);
+        printLL();
+        reverse();
         printLL();
     }
 }
