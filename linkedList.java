@@ -219,6 +219,30 @@ public class linkedList {
         }
     }
 
+    public static boolean palindrome() {
+        if (size == 0 || size == 1) {
+            return true;
+        }
+        int arr[] = new int[size];
+        Node cur = head;
+        int index = 0;
+        while (cur != null) {
+            arr[index] = cur.data;
+            cur = cur.next;
+            index++;
+        }
+        int i = 0;
+        int j = arr.length - 1;
+        while (i < j) {
+            if (arr[i] != arr[j]) {
+                return false;
+            }
+            i++;
+            j--;
+        }
+        return true;
+    }
+
     static Node head = null;
     static Node tail = null;
     static int size = 0;
@@ -232,9 +256,6 @@ public class linkedList {
         addLast(5);
         addLast(6);
         addLast(7);
-        addMiddle(0, 8);
-        printLL();
-        System.out.println(deleteNthFromLast(5));
-        printLL();
+        System.out.println(palindrome());
     }
 }
