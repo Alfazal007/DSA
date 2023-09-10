@@ -173,6 +173,52 @@ public class linkedList {
         tail = temp;
     }
 
+    public static int deleteNthFromLast(int n) {
+        if (size == 0) {
+            return Integer.MIN_VALUE;
+        }
+        if (size == 1) {
+            if (n == 1) { // first node from the last
+                int data = head.data;
+                size--;
+                head = null;
+                tail = null;
+                return data;
+            } else {
+                return Integer.MIN_VALUE;
+            }
+        }
+        if (size == 2) {
+            if (n == 1) {
+                return removeLast();
+            } else if (n == 2) {
+                return removeFirst();
+            } else {
+                return Integer.MIN_VALUE;
+            }
+        }
+        if (n == 1) {
+            return removeLast();
+        }
+        if (n == size) {
+            return removeFirst();
+        } else {
+            Node prev = null;
+            Node temp = head;
+            Node next = temp.next;
+            int index = 1;
+            while (index < size - n + 1) {
+                prev = temp;
+                temp = next;
+                next = next.next;
+                index++;
+            }
+            prev.next = next;
+            size--;
+            return temp.data;
+        }
+    }
+
     static Node head = null;
     static Node tail = null;
     static int size = 0;
@@ -188,7 +234,7 @@ public class linkedList {
         addLast(7);
         addMiddle(0, 8);
         printLL();
-        reverse();
+        System.out.println(deleteNthFromLast(5));
         printLL();
     }
 }
