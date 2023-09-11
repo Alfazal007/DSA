@@ -243,6 +243,19 @@ public class linkedList {
         return true;
     }
 
+    public static boolean cyclePresent() {
+        Node fast = head;
+        Node slow = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) {
+                return true; // cycle is present
+            }
+        }
+        return false; // cycle is not present
+    }
+
     static Node head = null;
     static Node tail = null;
     static int size = 0;
@@ -256,6 +269,6 @@ public class linkedList {
         addLast(5);
         addLast(6);
         addLast(7);
-        System.out.println(palindrome());
+        System.out.println(cyclePresent());
     }
 }
