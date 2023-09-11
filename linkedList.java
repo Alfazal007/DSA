@@ -256,6 +256,23 @@ public class linkedList {
         return false; // cycle is not present
     }
 
+    public static void removeCycle() {
+        Node slow = head;
+        Node fast = head;
+        while (slow != fast) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        slow = head;
+        Node prev = fast;
+        while (slow != fast) {
+            prev = fast;
+            slow = slow.next;
+            fast = fast.next;
+        }
+        prev.next = null;
+    }
+
     static Node head = null;
     static Node tail = null;
     static int size = 0;
@@ -269,6 +286,9 @@ public class linkedList {
         addLast(5);
         addLast(6);
         addLast(7);
+        head.next.next.next = head;
+        System.out.println(cyclePresent());
+        removeCycle();
         System.out.println(cyclePresent());
     }
 }
