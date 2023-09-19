@@ -93,6 +93,16 @@ public class buildTree {
         }
     }
 
+    public static int sumNodes(Node root) {
+        if (root == null) {
+            return 0;
+        } else if (root.left == null && root.right == null) {
+            return root.data;
+        } else {
+            return root.data + sumNodes(root.left) + sumNodes(root.right);
+        }
+    }
+
     public static void main(String[] args) {
         BinaryTree binaryTree = new BinaryTree();
         int arr[] = { 1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1 };
@@ -104,6 +114,7 @@ public class buildTree {
         // binaryTree.postorder(root);
         // levelOrder(root);
         // System.out.println(height(root));
-        System.out.println(countNodes(root));
+        // System.out.println(countNodes(root));
+        System.out.println(sumNodes(root));
     }
 }
