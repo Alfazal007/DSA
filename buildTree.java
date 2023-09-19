@@ -73,6 +73,16 @@ public class buildTree {
         }
     }
 
+    public static int height(Node root) {
+        if (root == null) {
+            return 0;
+        } else if (root.left == null && root.right == null) {
+            return 1;
+        } else {
+            return 1 + Math.max(height(root.left), height(root.right));
+        }
+    }
+
     public static void main(String[] args) {
         BinaryTree binaryTree = new BinaryTree();
         int arr[] = { 1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1 };
@@ -82,6 +92,7 @@ public class buildTree {
         // binaryTree.inorder(root);
         // System.out.println();
         // binaryTree.postorder(root);
-        levelOrder(root);
+        // levelOrder(root);
+        System.out.println(height(root));
     }
 }
