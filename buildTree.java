@@ -1,3 +1,6 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class buildTree {
     public static class Node {
         int data;
@@ -53,14 +56,32 @@ public class buildTree {
         }
     }
 
+    public static Queue<Node> queue = new LinkedList<>();
+
+    public static void levelOrder(Node root) {
+        if (root == null) {
+            return;
+        }
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            Node temp = queue.remove();
+            System.out.print(temp.data + " ");
+            if (temp.left != null)
+                queue.add(temp.left);
+            if (temp.right != null)
+                queue.add(temp.right);
+        }
+    }
+
     public static void main(String[] args) {
         BinaryTree binaryTree = new BinaryTree();
         int arr[] = { 1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1 };
         Node root = binaryTree.buildTree(arr);
-        binaryTree.preorder(root);
-        System.out.println();
-        binaryTree.inorder(root);
-        System.out.println();
-        binaryTree.postorder(root);
+        // binaryTree.preorder(root);
+        // System.out.println();
+        // binaryTree.inorder(root);
+        // System.out.println();
+        // binaryTree.postorder(root);
+        levelOrder(root);
     }
 }
