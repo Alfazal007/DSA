@@ -103,6 +103,35 @@ public class buildTree {
         }
     }
 
+    public static class InfoDiameter {
+        public int height;
+        public int diameter;
+
+        public InfoDiameter(int height, int diameter) {
+            this.height = height;
+            this.diameter = diameter;
+        }
+    }
+
+    public static InfoDiameter diameter(Node root) {
+        InfoDiameter cur = new InfoDiameter(0, 0);
+        if (root == null) {
+            return cur;
+        } else if (root.left == null && root.right == null) {
+            cur.height = 1;
+            cur.diameter = 1;
+            return cur;
+        } else {
+            InfoDiameter left = diameter(root.left);
+            InfoDiameter right = diameter(root.right);
+            int height = Math.max(left.height, right.height) + 1;
+            int diameter = Math.max(left.diameter, Math.max(right.diameter, left.height + right.height + 1));
+            cur.height = height;
+            cur.diameter = diameter;
+            return cur;
+        }
+    }
+
     public static void main(String[] args) {
         BinaryTree binaryTree = new BinaryTree();
         int arr[] = { 1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1 };
@@ -115,6 +144,7 @@ public class buildTree {
         // levelOrder(root);
         // System.out.println(height(root));
         // System.out.println(countNodes(root));
-        System.out.println(sumNodes(root));
+        // System.out.println(sumNodes(root));
+        System.out.println(diameter(root).diameter);
     }
 }
