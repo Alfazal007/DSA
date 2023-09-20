@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -132,6 +133,31 @@ public class buildTree {
         }
     }
 
+    static HashMap<Integer, Integer> hashMapTV = new HashMap<>();
+    static HashMap<Integer, Integer> hashMapBV = new HashMap<>();
+
+    public static void topView(Node root, int position) {
+        if (hashMapTV.get(position) == null) {
+            hashMapTV.put(position, root.data);
+        }
+        if (root.left != null) {
+            topView(root.left, position - 1);
+        }
+        if (root.right != null) {
+            topView(root.right, position + 1);
+        }
+    }
+
+    public static void bottomView(Node root, int position) {
+        hashMapBV.put(position, root.data);
+        if (root.left != null) {
+            bottomView(root.left, position - 1);
+        }
+        if (root.right != null) {
+            bottomView(root.right, position + 1);
+        }
+    }
+
     public static void main(String[] args) {
         BinaryTree binaryTree = new BinaryTree();
         int arr[] = { 1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1 };
@@ -145,6 +171,14 @@ public class buildTree {
         // System.out.println(height(root));
         // System.out.println(countNodes(root));
         // System.out.println(sumNodes(root));
-        System.out.println(diameter(root).diameter);
+        // System.out.println(diameter(root).diameter);
+        // topView(root, 0);
+        // for (Integer key : hashMapTV.keySet()) {
+        // System.out.println(hashMapTV.get(key));
+        // }
+        bottomView(root, 0);
+        for (Integer key : hashMapBV.keySet()) {
+            System.out.println(hashMapBV.get(key));
+        }
     }
 }
