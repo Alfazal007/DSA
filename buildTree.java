@@ -158,6 +158,18 @@ public class buildTree {
         }
     }
 
+    public static void kthLevel(Node root, int level, int curLevel) {
+        if (root == null) {
+            return;
+        } else if (level == curLevel) {
+            System.out.print(root.data + " ");
+            return;
+        } else {
+            kthLevel(root.left, level, curLevel + 1);
+            kthLevel(root.right, level, curLevel + 1);
+        }
+    }
+
     public static void main(String[] args) {
         BinaryTree binaryTree = new BinaryTree();
         int arr[] = { 1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1 };
@@ -176,9 +188,10 @@ public class buildTree {
         // for (Integer key : hashMapTV.keySet()) {
         // System.out.println(hashMapTV.get(key));
         // }
-        bottomView(root, 0);
-        for (Integer key : hashMapBV.keySet()) {
-            System.out.println(hashMapBV.get(key));
-        }
+        // bottomView(root, 0);
+        // for (Integer key : hashMapBV.keySet()) {
+        // System.out.println(hashMapBV.get(key));
+        // }
+        kthLevel(root, 3, 1);
     }
 }
