@@ -1,4 +1,4 @@
-public class MinimumAndMaximu {
+public class _1_MinimumAndMaximu {
     public static int sumFinder(int arr[]) {
         // finc the sum of minimum and maximum element in an array
         // constant space complexity and linear time complexity
